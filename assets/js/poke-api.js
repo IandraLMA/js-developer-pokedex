@@ -1,5 +1,30 @@
 
 const pokeApi = {}
+function convertPokeApiDetailToPokemonItens(pokeDetailItens) {
+    const pokeItens = new PokeItens()
+    pokeItens.id = pokeDetailItens.id
+    pokeItens.name = pokeDetailItens.name
+    pokeItens.photo = pokeDetailItens.sprites.default
+    pokeItens.shortEffect = pokeDetailItens.effect_entries[0].short_effect
+    return pokeItens
+}
+
+pokeApi.getPokemonDetailItens = (pokemonItens) => {
+    return fetch(pokemonItens.url)
+        .then((response) => response.json())
+        .then(convertPokeApiDetailToPokemonItens)
+}
+
+pokeApi.getPokemonsItens = (offset = 0, limit = 5) => {
+    const url = `https://pokeapi.co/api/v2/item?offset=${offset}&limit=${limit}`
+
+    return fetch(url)
+        .then((response) => response.json())
+        .then((jsonBody) => jsonBody.results)
+        .then((pokemonItens) => pokemonItens.map(pokeApi.getPokemonDetailItens))
+        .then((detailRequests) => Promise.all(detailRequests))
+        .then((pokemonsDetailsItens) => pokemonsDetailsItens)
+}
 
 function convertPokeApiDetailToPokemon(pokeDetail) {
     const pokemon = new Pokemon()

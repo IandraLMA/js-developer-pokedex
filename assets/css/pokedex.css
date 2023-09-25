@@ -1,9 +1,19 @@
 .pokemons {
+    grid-template-columns: 1fr;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: none;
+
+}
+
+.pokeItens {
     display: grid;
     grid-template-columns: 1fr;
     margin: 0;
     padding: 0;
     list-style: none;
+
 }
 
 .normal {
@@ -19,6 +29,10 @@
 }
 
 .water {
+    background-color: #678fee;
+}
+
+.default {
     background-color: #678fee;
 }
 
@@ -150,16 +164,28 @@
     .pokemons {
         grid-template-columns: 1fr 1fr;
     }
+
+    .pokeItens {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 @media screen and (min-width: 576px) {
     .pokemons {
         grid-template-columns: 1fr 1fr 1fr;
     }
+
+    .pokeItens {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
 }
 
 @media screen and (min-width: 992px) {
     .pokemons {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    .pokeItens {
         grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 }
